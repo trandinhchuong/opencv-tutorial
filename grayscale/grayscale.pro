@@ -30,7 +30,8 @@ SOURCES += \
         mainwindow.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+    example.h
 
 FORMS += \
         mainwindow.ui

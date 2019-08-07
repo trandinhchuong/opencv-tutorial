@@ -36,7 +36,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = grayscale1.0.0
-DISTDIR = /home/chuong/megasyn/opencv/grayscale/.tmp/grayscale1.0.0
+DISTDIR = /home/chuong/megasyn/opencv-tutorial/grayscale/.tmp/grayscale1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-rpath,/home/chuong/Qt5.9.0/5.9/gcc_64/lib
 LIBS          = $(SUBLIBS) /usr/local/lib/*.so -L/home/chuong/Qt5.9.0/5.9/gcc_64/lib -lQt5Widgets -lQt5Gui -lQt5Core -lGL -lpthread 
@@ -217,7 +217,8 @@ DIST          = ../../../Qt5.9.0/5.9/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qt5.9.0/5.9/gcc_64/mkspecs/features/exceptions.prf \
 		../../../Qt5.9.0/5.9/gcc_64/mkspecs/features/yacc.prf \
 		../../../Qt5.9.0/5.9/gcc_64/mkspecs/features/lex.prf \
-		grayscale.pro mainwindow.h main.cpp \
+		grayscale.pro mainwindow.h \
+		example.h main.cpp \
 		mainwindow.cpp
 QMAKE_TARGET  = grayscale
 DESTDIR       = 
@@ -576,7 +577,7 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../Qt5.9.0/5.9/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents mainwindow.h $(DISTDIR)/
+	$(COPY_FILE) --parents mainwindow.h example.h $(DISTDIR)/
 	$(COPY_FILE) --parents main.cpp mainwindow.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents mainwindow.ui $(DISTDIR)/
 
@@ -719,7 +720,7 @@ moc_mainwindow.cpp: ../../../Qt5.9.0/5.9/gcc_64/include/QtWidgets/QMainWindow \
 		mainwindow.h \
 		moc_predefs.h \
 		../../../Qt5.9.0/5.9/gcc_64/bin/moc
-	/home/chuong/Qt5.9.0/5.9/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/chuong/Qt5.9.0/5.9/gcc_64/mkspecs/linux-g++ -I/home/chuong/megasyn/opencv/grayscale -I/usr/local/include/opencv4 -I/home/chuong/Qt5.9.0/5.9/gcc_64/include -I/home/chuong/Qt5.9.0/5.9/gcc_64/include/QtWidgets -I/home/chuong/Qt5.9.0/5.9/gcc_64/include/QtGui -I/home/chuong/Qt5.9.0/5.9/gcc_64/include/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include mainwindow.h -o moc_mainwindow.cpp
+	/home/chuong/Qt5.9.0/5.9/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/chuong/Qt5.9.0/5.9/gcc_64/mkspecs/linux-g++ -I/home/chuong/megasyn/opencv-tutorial/grayscale -I/usr/local/include/opencv4 -I/home/chuong/Qt5.9.0/5.9/gcc_64/include -I/home/chuong/Qt5.9.0/5.9/gcc_64/include/QtWidgets -I/home/chuong/Qt5.9.0/5.9/gcc_64/include/QtGui -I/home/chuong/Qt5.9.0/5.9/gcc_64/include/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include mainwindow.h -o moc_mainwindow.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -850,11 +851,7 @@ main.o: main.cpp mainwindow.h \
 		../../../Qt5.9.0/5.9/gcc_64/include/QtCore/qeventloop.h \
 		../../../Qt5.9.0/5.9/gcc_64/include/QtWidgets/qdesktopwidget.h \
 		../../../Qt5.9.0/5.9/gcc_64/include/QtGui/qguiapplication.h \
-		../../../Qt5.9.0/5.9/gcc_64/include/QtGui/qinputmethod.h \
-		../../../Qt5.9.0/5.9/gcc_64/include/QtCore/QThread \
-		../../../Qt5.9.0/5.9/gcc_64/include/QtCore/qthread.h \
-		../../../Qt5.9.0/5.9/gcc_64/include/QtCore/QMutex \
-		../../../Qt5.9.0/5.9/gcc_64/include/QtCore/QMutexLocker
+		../../../Qt5.9.0/5.9/gcc_64/include/QtGui/qinputmethod.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
 mainwindow.o: mainwindow.cpp mainwindow.h \
@@ -961,45 +958,7 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../../Qt5.9.0/5.9/gcc_64/include/QtGui/qtouchdevice.h \
 		../../../Qt5.9.0/5.9/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../Qt5.9.0/5.9/gcc_64/include/QtGui/qicon.h \
-		ui_mainwindow.h \
-		../../../Qt5.9.0/5.9/gcc_64/include/QtCore/QVariant \
-		../../../Qt5.9.0/5.9/gcc_64/include/QtWidgets/QAction \
-		../../../Qt5.9.0/5.9/gcc_64/include/QtWidgets/qaction.h \
-		../../../Qt5.9.0/5.9/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../Qt5.9.0/5.9/gcc_64/include/QtWidgets/QApplication \
-		../../../Qt5.9.0/5.9/gcc_64/include/QtWidgets/qapplication.h \
-		../../../Qt5.9.0/5.9/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../Qt5.9.0/5.9/gcc_64/include/QtCore/qeventloop.h \
-		../../../Qt5.9.0/5.9/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../Qt5.9.0/5.9/gcc_64/include/QtGui/qguiapplication.h \
-		../../../Qt5.9.0/5.9/gcc_64/include/QtGui/qinputmethod.h \
-		../../../Qt5.9.0/5.9/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../Qt5.9.0/5.9/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../Qt5.9.0/5.9/gcc_64/include/QtWidgets/QHeaderView \
-		../../../Qt5.9.0/5.9/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../Qt5.9.0/5.9/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../Qt5.9.0/5.9/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../Qt5.9.0/5.9/gcc_64/include/QtWidgets/qframe.h \
-		../../../Qt5.9.0/5.9/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../Qt5.9.0/5.9/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../Qt5.9.0/5.9/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../Qt5.9.0/5.9/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../Qt5.9.0/5.9/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../Qt5.9.0/5.9/gcc_64/include/QtGui/qvalidator.h \
-		../../../Qt5.9.0/5.9/gcc_64/include/QtCore/qregularexpression.h \
-		../../../Qt5.9.0/5.9/gcc_64/include/QtWidgets/qslider.h \
-		../../../Qt5.9.0/5.9/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../Qt5.9.0/5.9/gcc_64/include/QtWidgets/qstyle.h \
-		../../../Qt5.9.0/5.9/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../Qt5.9.0/5.9/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../Qt5.9.0/5.9/gcc_64/include/QtWidgets/QMenuBar \
-		../../../Qt5.9.0/5.9/gcc_64/include/QtWidgets/qmenubar.h \
-		../../../Qt5.9.0/5.9/gcc_64/include/QtWidgets/qmenu.h \
-		../../../Qt5.9.0/5.9/gcc_64/include/QtWidgets/QStatusBar \
-		../../../Qt5.9.0/5.9/gcc_64/include/QtWidgets/qstatusbar.h \
-		../../../Qt5.9.0/5.9/gcc_64/include/QtWidgets/QToolBar \
-		../../../Qt5.9.0/5.9/gcc_64/include/QtWidgets/qtoolbar.h \
-		../../../Qt5.9.0/5.9/gcc_64/include/QtWidgets/QWidget
+		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
